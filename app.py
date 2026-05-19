@@ -14,6 +14,8 @@ limiter = Limiter(
     default_limits=["5000 per day", "2000 per hour"]
 )
 
+# Feature update branch
+
 # MySQL Configuration
 
 app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST')
