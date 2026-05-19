@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Healthcare+</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            background:#f4f8fb;
+        }
+
+        /* Navbar */
+
+        .navbar{
+            background:rgba(255,255,255,0.9);
+            backdrop-filter:blur(12px);
+            padding:18px 0;
+            box-shadow:0 5px 20px rgba(0,0,0,0.04);
+
+            position:fixed;
+            top:0;
+            width:100%;
+            z-index:1000;
+        }
+
+        .navbar-brand{
+            font-size:28px;
+            font-weight:700;
+            color:#0d6efd !important;
+        }
+
+        .nav-link{
+            color:#1e293b;
+            font-weight:500;
+            margin-left:15px;
+            position:relative;
+            transition:0.3s ease;
+            padding:6px 12px;
+            border-radius:10px;
+        }
+
+        .nav-link::before{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:rgba(13,110,253,0.08);
+            border-radius:10px;
+
+            transform:scale(0.7);
+            opacity:0;
+
+            transition:0.3s ease;
+
+            z-index:-1;
+        }
+
+        .nav-link:hover{
+            color:#0d6efd;
+            transform:translateY(-2px);
+        }
+
+        .nav-link:hover::before{
+            transform:scale(1);
+            opacity:1;
+        }
+
+        /* Profile Section */
+
+        .profile-section{
+            padding:140px 0 60px;
+        }
+
+        .profile-card{
+            background:rgba(255,255,255,0.75);
+            backdrop-filter:blur(12px);
+            padding:45px;
+            border-radius:30px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.06);
+            max-width:700px;
+            margin:auto;
+        }
+
+        .profile-title{
+            text-align:center;
+            margin-bottom:35px;
+        }
+
+        .profile-title h1{
+            font-size:40px;
+            font-weight:700;
+            color:#1e293b;
+        }
+
+        .profile-title p{
+            color:#64748b;
+            margin-top:10px;
+        }
+
+        /* Profile Picture */
+
+        .profile-picture{
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            background:#dbeafe;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:40px;
+            font-weight:700;
+            color:#0d6efd;
+            margin:0 auto 25px;
+        }
+
+        .upload-text{
+            text-align:center;
+            color:#64748b;
+            margin-bottom:30px;
+            font-size:14px;
+        }
+
+        /* Form */
+
+        .form-label{
+            font-weight:600;
+            color:#1e293b;
+            margin-bottom:8px;
+        }
+
+        .form-control{
+            height:58px;
+            border-radius:14px;
+            border:1px solid #dbe4ee;
+            margin-bottom:22px;
+        }
+
+        .form-control:focus{
+            box-shadow:none;
+            border-color:#0d6efd;
+        }
+
+        .update-btn{
+            width:100%;
+            height:58px;
+            border:none;
+            border-radius:14px;
+            background:#0d6efd;
+            color:white;
+            font-weight:600;
+            transition:0.3s ease;
+            box-shadow:0 8px 20px rgba(13,110,253,0.25);
+        }
+
+        .update-btn:hover{
+            transform:translateY(-3px);
+            box-shadow:0 12px 25px rgba(13,110,253,0.35);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="#">
+                Healthcare+
+            </a>
+
+
+            <button 
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-outline-primary rounded-pill px-4" href="/logout">
+                            Logout
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- Profile Section -->
+
+    <section class="profile-section">
+
+        <div class="container">
+
+            <div class="profile-card">
+
+                <div class="profile-title">
+
+                    <div class="profile-picture">
+                        {{ user[1][0] }}
+                    </div>
+
+                    <h1>
+                        My Profile
+                    </h1>
+
+                    <p>
+                        Manage your Healthcare+ account settings.
+                    </p>
+
+                </div>
+
+
+                <form method="POST">
+
+                    <label class="form-label">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="fullname"
+                        value="{{ user[1] }}"
+                        required
+                    >
+
+                    <label class="form-label">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        class="form-control"
+                        value="{{ user[2] }}"
+                        readonly
+                    >
+
+                    <button class="update-btn">
+                        Update Profile
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
