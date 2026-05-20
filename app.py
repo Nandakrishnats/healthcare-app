@@ -4,6 +4,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import bcrypt
 import re
+import os
 
 app = Flask(__name__)
 app.secret_key = 'healthcare_secret_key'
@@ -17,10 +18,10 @@ limiter = Limiter(
 
 # MySQL Configuration
 
-app.config['MYSQL_HOST'] = healthcare-db.cpkg4o86gmw2.ap-south-1.rds.amazonaws.com
-app.config['MYSQL_USER'] = admin
-app.config['MYSQL_PASSWORD'] = 3TVKuvtg5N
-app.config['MYSQL_DB'] = healthcare_db
+app.config['MYSQL_HOST'] = "healthcare-db.cpkg4o86gmw2.ap-south-1.rds.amazonaws.com"
+app.config['MYSQL_USER'] = "admin"
+app.config['MYSQL_PASSWORD'] = "3TVKuvtg5N"
+app.config['MYSQL_DB'] = "healthcare_db"
 
 mysql = MySQL(app)
 
