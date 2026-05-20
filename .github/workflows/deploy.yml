@@ -14,16 +14,19 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Stop Existing Containers
-      run: |
-        sudo docker stop $(sudo docker ps -aq) || true
-        sudo docker rm $(sudo docker ps -aq) || true
-
     - name: Build Docker Image
       run: |
         cd ~/healthcare-deployment
         sudo docker build -t healthcare-app .
 
-    - name: Run Docker Container
+    - name: Stop Old Container
       run: |
-        sudo docker run -d -p 5000:5000 healthcare-app
+        sudo docker stop healthcare-container || true
+        sudo docker rm healthcare-container || true
+
+    - name: Run New Container
+      run: |
+        sudo docker run -d \
+        --name healthcare-container \
+        -p 5000:5000 \
+        healthcare-app
