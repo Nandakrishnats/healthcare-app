@@ -27,8 +27,9 @@ jobs:
     - name: Run Docker Container
       run: |
         sudo docker run -d -p 5000:5000 \
-        -e MYSQL_HOST="${{ secrets.MYSQL_HOST }}" \
-        -e MYSQL_USER="${{ secrets.MYSQL_USER }}" \
-        -e MYSQL_PASSWORD="${{ secrets.MYSQL_PASSWORD }}" \
-        -e MYSQL_DB="${{ secrets.MYSQL_DB }}" \
+        -e MYSQL_HOST="healthcare-db.cpkg4o86gmw2.ap-south-1.rds.amazonaws.com" \
+        -e MYSQL_USER="admin" \
+        -e MYSQL_PASSWORD="3TVKuvtg5N" \
+        -e MYSQL_DB="healthcare_db" \
         healthcare-app
+
