@@ -20,7 +20,7 @@ limiter = Limiter(
 
 app.config['MYSQL_HOST'] = 'healthcare-db.cpkg4o86gmw2.ap-south-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'admin'
-app.config['MYSQL_PASSWORD'] = '3TVKuvtg5N'
+app.config['MYSQL_PASSWORD'] = '3TVkuvtg5N'
 app.config['MYSQL_DB'] = 'healthcare_db'
 
 mysql = MySQL(app)
