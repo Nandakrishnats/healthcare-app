@@ -683,6 +683,10 @@ def logout():
         window.location.href = '/login';
     </script>
     """
+# Health Check Route
+@app.route('/health')
+def health():
+    return "Application Healthy", 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
