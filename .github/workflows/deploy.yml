@@ -9,33 +9,25 @@ jobs:
   deploy:
     runs-on: self-hosted
 
-    env:
-      MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
-      MYSQL_USER: ${{ secrets.MYSQL_USER }}
-      MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-      MYSQL_DB: ${{ secrets.MYSQL_DB }}
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
 
-      - name: Build Docker Image
-        run: |
-          cd ~/healthcare-deployment
-          sudo docker build -t healthcare-app .
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Stop Old Container
-        run: |
-          sudo docker stop healthcare-container || true
-          sudo docker rm healthcare-container || true
+    - name: Build Docker Image
+      run: |
+        cd ~/healthcare-deployment
+        sudo docker build -t healthcare-app .
 
-      - name: Run New Container
-        run: |
-          sudo docker run -d \
-            --name healthcare-container \
-            -p 5000:5000 \
-            -e MYSQL_HOST=$MYSQL_HOST \
-            -e MYSQL_USER=$MYSQL_USER \
-            -e MYSQL_PASSWORD=$MYSQL_PASSWORD \
-            -e MYSQL_DB=$MYSQL_DB \
-            healthcare-app
+    - name: Stop Old Container
+      run: |
+        sudo docker stop healthcare-container || true
+        sudo docker rm healthcare-container || true
+
+    - name: Run New Container
+      run: |
+        sudo docker run -d \
+        --name healthcare-container \
+        -p 5000:5000 \
+        healthcare-app
+
