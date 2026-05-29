@@ -61,7 +61,7 @@ The application was deployed using a cloud-based AWS architecture consisting of:
 
 ```bash
 git clone https://github.com/your-username/your-repository-name.git
-cd healthcare-deployment
+cd healthcare-app
 ```
 ---
 
@@ -147,7 +147,7 @@ Automated backup scripts were configured to:
 # Repository Structure
 
 ```text
-healthcare-deployment/
+healthcare-app/
 │
 ├── app.py
 ├── Dockerfile
